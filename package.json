@@ -1,0 +1,17 @@
+{
+  "name": "wkndhw_api_fun",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "mocha specs/",
+    "start": "node server.js"
+  },
+  "author": "Craig Morton",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "express": "^4.13.4",
+    "mocha": "^2.4.5"
+  }
+}
