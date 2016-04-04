@@ -47,11 +47,10 @@ var infoBox = document.querySelector("section#pkmn-info-box");
 
 
 var makePkmnInfoBox = function(name){
-  var pkmn = new Pokemon(name);
 
   // how do i delay this properly?
-
-  setTimeout(function(){
+  // A: pass the display function to the pokemon constructor, so you can have it only invoke when the request has returned
+  var showPkmnData = function(){
     console.log(pkmn.natDexId, pkmn.types, pkmn.sprites, "moves:", pkmn.moves);
     console.log(pkmn);
 
@@ -77,7 +76,7 @@ var makePkmnInfoBox = function(name){
     infoBox.appendChild(spriteShinyBack);
 
     var types = document.createElement("p");
-    types.innerText = "Type:";
+    types.innerText = "Type(s):";
     for (var i = 0; i < pkmn.types.length; i++){
       types.innerText += (" " + pkmn.types[i]);
     };
@@ -97,12 +96,10 @@ var makePkmnInfoBox = function(name){
     }
     movesDropDownLabel.appendChild(movesDropDown);
     infoBox.appendChild(movesDropDownLabel);
-
-
-
-  }.bind(this), 5000)
-
+  };
+  var pkmn = new Pokemon(name, showPkmnData);
 }
+
 
 makePkmnDropDown();
 var selectedOption = document.querySelector("option[value='"+ pkmnDropDown.value +"']");

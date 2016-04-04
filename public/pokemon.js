@@ -1,4 +1,4 @@
-var Pokemon = function(name){
+var Pokemon = function(name, displayFunction){
   var nameCapitalised = name.slice(0,1).toUpperCase() + name.slice(1, name.length).toLowerCase()
   this.name = nameCapitalised;
   this.natDexId;
@@ -33,6 +33,7 @@ var Pokemon = function(name){
         this.sprites.shinyFront = pkmnData.sprites.front_shiny;
         this.sprites.shinyBack = pkmnData.sprites.back_shiny;
         // localStorage.setItem("key", JSON.stringify(objectToStore));
+        displayFunction();
       };// if status valid end
     }.bind(this);// request.onload end
   };//getData function end
