@@ -32,6 +32,7 @@ var makePkmnDropDown = function(){
   while (pkmnDropDown.firstChild){
     pkmnDropDown.removeChild(pkmnDropDown.firstChild);
   }
+  var genDropDown = document.querySelector("section#drop-down-generation select");
   for (var pkmnIndex = 0; pkmnIndex < pokedex.listGen[genDropDown.value].length; pkmnIndex++){
     var pkmnOption = document.createElement("option");
     pkmnOption.value = pkmnIndex;
@@ -51,7 +52,7 @@ var makePkmnInfoBox = function(name){
   // how do i delay this properly?
   // A: pass the display function to the pokemon constructor, so you can have it only invoke when the request has returned
   var showPkmnData = function(){
-    console.log(pkmn.natDexId, pkmn.types, pkmn.sprites, "moves:", pkmn.moves);
+    // console.log(pkmn.natDexId, pkmn.types, pkmn.sprites, "moves:", pkmn.moves);
     console.log(pkmn);
 
     while (infoBox.firstChild){
@@ -62,18 +63,29 @@ var makePkmnInfoBox = function(name){
     heading.innerText = "#" + pkmn.natDexId + " - " + pkmn.name;
     infoBox.appendChild(heading);
 
-    var spriteFront = document.createElement("img");
-    spriteFront.src = pkmn.sprites.front;
-    var spriteBack = document.createElement("img");
-    spriteBack.src = pkmn.sprites.back;
-    var spriteShinyFront = document.createElement("img");
-    spriteShinyFront.src = pkmn.sprites.shinyFront;
-    var spriteShinyBack = document.createElement("img");
-    spriteShinyBack.src = pkmn.sprites.shinyBack;
-    infoBox.appendChild(spriteFront);
-    infoBox.appendChild(spriteBack);
-    infoBox.appendChild(spriteShinyFront);
-    infoBox.appendChild(spriteShinyBack);
+    if (pkmn.sprites.front){
+      var spriteFront = document.createElement("img");
+      spriteFront.src = pkmn.sprites.front;
+      infoBox.appendChild(spriteFront);
+    }
+
+    if (pkmn.sprites.back){
+      var spriteBack = document.createElement("img");
+      spriteBack.src = pkmn.sprites.back;
+      infoBox.appendChild(spriteBack);
+    }
+    if (pkmn.sprites.shinyFront){
+      var spriteShinyFront = document.createElement("img");
+      spriteShinyFront.src = pkmn.sprites.shinyFront;
+      infoBox.appendChild(spriteShinyFront);
+    }
+    console.log(pkmn.sprites.shinyBack);
+
+    if (pkmn.sprites.shinyBack){
+      var spriteShinyBack = document.createElement("img");
+      spriteShinyBack.src = pkmn.sprites.shinyBack;
+      infoBox.appendChild(spriteShinyBack);
+    }
 
     var types = document.createElement("p");
     types.innerText = "Type(s):";
@@ -102,14 +114,13 @@ var makePkmnInfoBox = function(name){
 
 
 makePkmnDropDown();
-var selectedOption = document.querySelector("option[value='"+ pkmnDropDown.value +"']");
+var selectedOption = document.querySelector("section#drop-down-pokemon option[value='"+ pkmnDropDown.value +"']");
 console.log(pkmnDropDown.value);
 makePkmnInfoBox(selectedOption.innerHTML.toLowerCase());
 
 genDropDown.onchange = function(){
   makePkmnDropDown();
-
-  var selectedOption = document.querySelector("option[value='"+ pkmnDropDown.value +"']");  
+  var selectedOption = document.querySelector("section#drop-down-pokemon option[value='"+ pkmnDropDown.value +"']");  
   makePkmnInfoBox(selectedOption.innerHTML.toLowerCase());
 }
 // //////////////////////////////////////////////////
@@ -117,7 +128,8 @@ genDropDown.onchange = function(){
 
 
 pkmnDropDown.onchange = function(){
-  var selectedOption = document.querySelector("option[value='"+ this.value +"']");  
+  var selectedOption = document.querySelector("section#drop-down-pokemon option[value='"+ pkmnDropDown.value +"']");
+
   makePkmnInfoBox(selectedOption.innerHTML.toLowerCase());
 }
 

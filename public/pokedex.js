@@ -6,7 +6,6 @@ var Pokedex = function(){
         console.log("getting data from", url);
         var request = new XMLHttpRequest;
         request.open("GET", url);
-        request.send();
         request.onload = function(){
           if (request.status >= 200 && request.status < 400){
             console.log("api GET successful");
@@ -15,6 +14,7 @@ var Pokedex = function(){
             localStorage.setItem("pokedex_gen"+gen, JSON.stringify(this.listGen["gen"+gen]));
           };// if status valid end
         }.bind(this);// request.onload end
+        request.send();
   };//getData function end
 
   this.listGen = {};
