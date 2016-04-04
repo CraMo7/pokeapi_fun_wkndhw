@@ -1,0 +1,47 @@
+@font-face {
+  font-family: Pokemon;
+  src: url(./font/Pokemon_GB.ttf);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  font-family: Pokemon, sans-serif;
+  font-weight: normal;
+}
+
+body {
+  background-color: #aaa;
+}
+
+/* HEADER */
+
+nav {
+  margin: 0.75em;
+  padding: 0.25em;
+}
+
+select {
+  margin: 0.5em;
+}
+
+section#pkmn-info-box {
+  border: 3px dotted black;
+  padding: 1em;
+  margin: 1em;
+  width: auto;
+  display: inline-block;
+}
+
+h4 {
+  text-align: center;
+}
+
+p {
+  font-size: 0.8em;
+}
+
+label {
+  font-size: 0.7em;
+}
