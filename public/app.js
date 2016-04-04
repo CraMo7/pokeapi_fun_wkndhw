@@ -48,7 +48,6 @@ var infoBox = document.querySelector("section#pkmn-info-box");
 
 
 var makePkmnInfoBox = function(name){
-
   // how do i delay this properly?
   // A: pass the display function to the pokemon constructor, so you can have it only invoke when the request has returned
   var showPkmnData = function(){
